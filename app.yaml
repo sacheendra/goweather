@@ -6,7 +6,7 @@ api_version: go1
 handlers:
 - url: /(.*\.(css|gif|png|jpg|ico|js|html))
   static_files: static/\1
-  upload: app/client/(.*\.(css|gif|png|jpg|ico|js|html))
+  upload: static/(.*\.(css|gif|png|jpg|ico|js|html))
 
 - url: /.*
   script: _go_app

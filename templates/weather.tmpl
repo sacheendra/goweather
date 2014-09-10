@@ -23,8 +23,8 @@
     <div class="jumbotron" style="padding-bottom: 8em">
 
       {{range $element := .}}
-        {{if $element.Location}}
-            <h3 class="text-primary"><strong>{{$element.Location}}</strong></h3>
+        {{if $element.Location.Current}}
+            <h3 class="text-primary"><strong>{{$element.Location.Current}}</strong></h3>
             <div class="col-md-6">
                 <div class="row">
                 <h4><span class="label label-info"><strong>Minimum Temperature:</strong></span></h4> <h3><strong>{{$element.Weather.TempMinC}}&deg;C</strong></h3>
@@ -35,6 +35,10 @@
                 <h4><span class="label label-warning"><strong>Maximum Temperature:</strong></span></h4> <h3><strong>{{$element.Weather.TempMaxC}}&deg;C</strong></h3>
                 </div>
             </div>
+        {{else}}
+            {{if $element.Error.Msg}}
+                <h3 class="text-primary"><strong>Unable to find the location. </strong></h3>
+            {{end}}
         {{end}}
       {{end}}
 
