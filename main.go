@@ -6,6 +6,7 @@ import (
     "io/ioutil"
     "encoding/xml"
     "html/template"
+    "net/url"
 
     "appengine"
     "appengine/urlfetch"
@@ -64,7 +65,7 @@ func getWeather(w http.ResponseWriter, r *http.Request) {
             if location == "" {
                 weatherc <- Weather{}
             } else {
-                weather, err := fetchWeather(client, location)
+                weather, err := fetchWeather(client, url.QueryEscape(location))
                 if err != nil {
                     errc <- err
                     return
